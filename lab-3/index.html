@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Delivery Research</title>
+    <link href="https://fonts.googleapis.com/css2?family=Monofett&display=swap" rel="stylesheet">
+    <style>
+        body, h1, h2, p, ol, ul, li, strong, code, footer {
+            font-family: 'Monofett', sans-serif;
+        }
+        body {
+            background-color: #f4f4f4;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #ff5733;
+        }
+        h2 {
+            color: #3498db;
+        }
+        p, li {
+            color: #2ecc71;
+        }
+        strong {
+            color: #e74c3c;
+        }
+        code {
+            color: #8e44ad;
+            background-color: #ecf0f1;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        footer {
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <h1>How to Deliver a Font to a Client</h1>
+    <p>One way to deliver a font to a web browser is by using the <code>@font-face</code> rule in CSS. This method allows developers to specify a custom font hosted on their server or an external source. The browser then downloads the font and applies it to the webpage.</p>
+    <p>Steps to serve a custom font using <code>@font-face</code>:</p>
+    <ol>
+        <li>Choose a font that is not commonly installed on most devices.</li>
+        <li>Host the font file on your server or use a web font service like Google Fonts.</li>
+        <li>Define the font in CSS using the <code>@font-face</code> rule, specifying the font file's URL.</li>
+        <li>Apply the font to elements on your webpage using the <code>font-family</code> property.</li>
+    </ol>
+    <p>In this example, I have used the 'Monofett' font, which is linked via Google Fonts.</p>
+    
+    <h2>Why Use Custom Fonts?</h2>
+    <p>Custom fonts enhance the visual appeal of a website and help in branding. They allow designers to create a unique and engaging user experience. Without custom fonts, websites would be limited to standard system fonts, reducing creativity.</p>
+    
+    <h2>Other Methods of Font Delivery</h2>
+    <p>Besides using <code>@font-face</code>, other methods include:</p>
+    <ul>
+        <li><strong>Google Fonts:</strong> A free and easy-to-use service that allows embedding fonts via a simple link.</li>
+        <li><strong>Adobe Fonts:</strong> A subscription-based service that provides high-quality typefaces.</li>
+        <li><strong>Self-hosting:</strong> Downloading and storing fonts on your own server to ensure availability.</li>
+    </ul>
+    
+    <h2>Conclusion</h2>
+    <p>Delivering custom fonts can significantly improve a website’s aesthetics and readability. The <code>@font-face</code> method provides a flexible way to include fonts from different sources, ensuring compatibility across various devices and browsers.</p>
+    
+    <footer>
+        <p>Last updated: 
+            <span id="lastModified"></span>
+        </p>
+    </footer>
+    <script type="text/javascript">
+         var x = document.lastModified;
+         document.getElementById('lastModified').textContent = x;
+    </script>
+</body>
+</html>
