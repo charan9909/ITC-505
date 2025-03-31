@@ -1,12 +1,67 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Homework 1</title>
-    </head>
-    <body>
-        <p>
-            I did my homework!
-        </p>
-        <img src="nau.jpg">
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 6: To-Do List Application</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>My Task Manager</h1>
+            <p>Organize your day with this simple to-do list application</p>
+        </header>
+
+        <nav class="menu">
+            <h2>Navigation</h2>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <h2>To-Do List Application</h2>
+            <div id="todo-app">
+                <div class="input-container">
+                    <input type="text" id="taskInput" placeholder="Enter a new task...">
+                    <button id="addTask">Add Task</button>
+                </div>
+                <ul id="taskList"></ul>
+                <div class="task-stats">
+                    <p>Total tasks: <span id="totalTasks">0</span></p>
+                    <p>Completed tasks: <span id="completedTasks">0</span></p>
+                </div>
+            </div>
+        </main>
+
+        <aside class="ad">
+            <a href="https://www.amazon.com/JavaScript-Definitive-Guide-Activate-Guides/dp/1491952024/" target="_blank">
+                <img src="https://m.media-amazon.com/images/I/51wijnc-Y8L._SX379_BO1,204,203,200_.jpg" alt="JavaScript: The Definitive Guide">
+                <p>Check out this essential JavaScript book!</p>
+            </a>
+        </aside>
+
+        <footer class="footer">
+            <div class="addendum">
+                <h3>Addendum</h3>
+                <p><strong>Problem Solved:</strong> I created a simple to-do list application that allows users to add tasks, mark them as complete, and delete them.</p>
+                <p><strong>Implementation:</strong> The solution uses HTML, CSS Grid for the Holy Grail layout, and JavaScript for the interactive functionality. Event listeners are attached to handle adding new tasks, completing tasks, and deleting tasks.</p>
+                <p><strong>Challenges:</strong> One challenge was updating the task counters when tasks are added, completed, or deleted. I solved this by creating a separate function to update the counters that gets called whenever the task list changes.</p>
+            </div>
+            <p>Last updated: 
+                <span id="lastModified"></span>
+            </p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+    <script type="text/javascript">
+        var x = document.lastModified;
+        document.getElementById('lastModified').textContent = x;
+    </script>
+</body>
 </html>
