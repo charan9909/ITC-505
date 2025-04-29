@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Web Form - ITC505 Lab 8</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        .success-message {
+            color: green;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+            background-color: #e7f7e7;
+            border-radius: 4px;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Secure Registration Form</h1>
+    <div class="success-message" id="success-message">
+        Form submitted successfully! Your information has been securely processed.
+    </div>
+    <form id="secure-form" onsubmit="return validateForm()">
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName">
+            <div class="error" id="firstNameError">Please enter your first name</div>
+        </div>
+        
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName">
+            <div class="error" id="lastNameError">Please enter your last name</div>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email">
+            <div class="error" id="emailError">Please enter a valid email address</div>
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+            <div class="error" id="passwordError">Password must be at least 8 characters long</div>
+        </div>
+        
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword">
+            <div class="error" id="confirmPasswordError">Passwords do not match</div>
+        </div>
+        
+        <button type="submit">Register</button>
+    </form>
+
+    <script>
+        // Function to escape HTML/JavaScript special characters to prevent XSS
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+
+        // Function to validate the form
+        function validateForm() {
+            let isValid = true;
+            
+            // Get form elements
+            const firstName = document.getElementById('firstName');
+            const lastName = document.getElementById('lastName');
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirmPassword');
+            
+            // Reset previous error messages
+            document.querySelectorAll('.error').forEach(el => el.style.display = 'none');
+            
+            // Validate First Name
+            if (firstName.value.trim() === '') {
+                document.getElementById('firstNameError').style.display = 'block';
+                isValid = false;
+            } else {
+                // Apply XSS protection by escaping the input
+                firstName.value = escapeHtml(firstName.value.trim());
+            }
+            
+            // Validate Last Name
+            if (lastName.value.trim() === '') {
+                document.getElementById('lastNameError').style.display = 'block';
+                isValid = false;
+            } else {
+                // Apply XSS protection by escaping the input
+                lastName.value = escapeHtml(lastName.value.trim());
+            }
+            
+            // Validate Email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value.trim())) {
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            } else {
+                // Apply XSS protection by escaping the input
+                email.value = escapeHtml(email.value.trim());
+            }
+            
+            // Validate Password
+            if (password.value.length < 8) {
+                document.getElementById('passwordError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validate Confirm Password
+            if (password.value !== confirmPassword.value) {
+                document.getElementById('confirmPasswordError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // If form is valid, show success message
+            if (isValid) {
+                document.getElementById('success-message').style.display = 'block';
+                
+                // In a real application, you would use prepared statements
+                // when sending this data to a server to prevent SQL Injection
+                console.log("Form submitted with the following data:");
+                console.log("First Name:", firstName.value);
+                console.log("Last Name:", lastName.value);
+                console.log("Email:", email.value);
+                
+                // Reset form after successful submission
+                setTimeout(() => {
+                    document.getElementById('secure-form').reset();
+                    document.getElementById('success-message').style.display = 'none';
+                }, 3000);
+            }
+            
+            return false; // Prevent form submission for this demo
+        }
+
+        // Add event listeners for real-time validation
+        document.getElementById('email').addEventListener('blur', function() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(this.value.trim()) && this.value.trim() !== '') {
+                document.getElementById('emailError').style.display = 'block';
+            } else {
+                document.getElementById('emailError').style.display = 'none';
+            }
+        });
+
+        document.getElementById('password').addEventListener('input', function() {
+            if (this.value.length < 8 && this.value.length > 0) {
+                document.getElementById('passwordError').style.display = 'block';
+            } else {
+                document.getElementById('passwordError').style.display = 'none';
+            }
+        });
+
+        document.getElementById('confirmPassword').addEventListener('input', function() {
+            const password = document.getElementById('password').value;
+            if (this.value !== password && this.value.length > 0) {
+                document.getElementById('confirmPasswordError').style.display = 'block';
+            } else {
+                document.getElementById('confirmPasswordError').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
