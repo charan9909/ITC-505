@@ -1,26 +1,67 @@
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
-  background-color: #f0f0f0;
+  background: linear-gradient(to right, #f0f2f5, #e2e8f0);
+  padding: 20px;
+}
+
+h1 {
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.instructions {
+  color: #34495e;
+  margin-bottom: 20px;
 }
 
 #game-board {
   display: grid;
   grid-template-columns: repeat(5, 60px);
   justify-content: center;
-  gap: 5px;
-  margin-top: 30px;
+  gap: 8px;
+  margin: 0 auto 30px;
 }
 
 .square {
   width: 60px;
   height: 60px;
-  background-color: #333;
-  border: 2px solid #000;
+  background-color: #2c3e50;
+  border-radius: 8px;
+  border: 2px solid #1a1a1a;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .square.is-off {
-  background-color: #eee;
+  background-color: #ecf0f1;
 }
+
+footer {
+  margin-top: 40px;
+  font-size: 14px;
+  color: #555;
+}
+
+.addendum {
+  margin-top: 40px;
+  max-width: 600px;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.addendum h2 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.addendum p {
+  color: #333;
+  line-height: 1.6;
+}
+
