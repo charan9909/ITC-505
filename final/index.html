@@ -7,15 +7,25 @@
 </head>
 <body>
   <h1>Lights Out</h1>
+  <p class="instructions">Click tiles to toggle them and their neighbors. Turn all lights off to win!</p>
   <div id="game-board"></div>
+
+  <section class="addendum">
+    <h2>Development Addendum</h2>
+    <p><strong>Creative Process:</strong> I designed a clean grid with color contrast to represent the “on” and “off” states. I wanted the interface to be intuitive and fast to interact with.</p>
+    <p><strong>Challenges:</strong> Randomizing the game while ensuring it's always solvable was a challenge. I overcame this by simulating a set of random user clicks on a blank board. This guarantees a solvable configuration each time.</p>
+    <p><strong>Insights:</strong> This project taught me the importance of separating concerns in web development — styling, logic, and structure. I also learned how to manipulate the DOM effectively and detect win conditions based on CSS class states.</p>
+    <p><strong>Font Handling:</strong> Default fonts were used to ensure consistent cross-platform rendering. No custom font serving was needed in this version.</p>
+  </section>
 
   <footer>
     <p>Last updated: <span id="lastModified"></span></p>
   </footer>
-  <script type="text/javascript">
+  <script>
     var x = document.lastModified;
     document.getElementById('lastModified').textContent = x;
   </script>
   <script src="script.js"></script>
 </body>
 </html>
+
