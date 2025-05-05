@@ -1,0 +1,26 @@
+body {
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  background-color: #f0f0f0;
+}
+
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(5, 60px);
+  justify-content: center;
+  gap: 5px;
+  margin-top: 30px;
+}
+
+.square {
+  width: 60px;
+  height: 60px;
+  background-color: #333;
+  border: 2px solid #000;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.square.is-off {
+  background-color: #eee;
+}
